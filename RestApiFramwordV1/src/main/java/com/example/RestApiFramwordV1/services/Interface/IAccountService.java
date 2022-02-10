@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface IAccountService {
     List<Account> GetListAccount();
     Optional<Account> GetListAccountById(long id);
+    Account InsertAccount(Account account);
 }

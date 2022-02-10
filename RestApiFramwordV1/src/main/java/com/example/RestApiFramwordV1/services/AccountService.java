@@ -24,4 +24,9 @@ public class AccountService implements IAccountService {
     public Optional<Account> GetListAccountById(long id) {
         return  accountRepository.findById(id);
     }
+
+    @Override
+    public Account InsertAccount(Account account) {
+        return accountRepository.save(account);
+    }
 }
