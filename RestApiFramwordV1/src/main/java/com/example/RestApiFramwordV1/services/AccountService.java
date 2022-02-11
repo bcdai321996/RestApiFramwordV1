@@ -2,6 +2,8 @@ package com.example.RestApiFramwordV1.services;
 import com.example.RestApiFramwordV1.models.Account;
 import com.example.RestApiFramwordV1.respository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.RestApiFramwordV1.services.Interface.IAccountService;
 
@@ -13,12 +15,16 @@ public class AccountService implements IAccountService {
     private final AccountRepository accountRepository;
 
 
+    @Override
+    public Page<Account> GetListAccount(Pageable paging) {
+        return accountRepository.findAll(paging);
+    }
 
     @Override
-    public List<Account> GetListAccount() {
-
-        return accountRepository.findAll();
+    public Page<Account> findByUserNameContaining(String title, Pageable pageable) {
+        return accountRepository.findByUserNameContaining(title, pageable);
     }
+
 
     @Override
     public Optional<Account> GetListAccountById(long id) {
