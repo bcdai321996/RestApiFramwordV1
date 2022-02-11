@@ -21,7 +21,9 @@ public class AccountController {
 
     @GetMapping(value ="/accounts")
     public ResponseEntity<Map<String, Object>> GetAccount(
-            @RequestParam(required = false) String user_name,
+            @RequestParam(required = false) String userName,
+            @RequestParam(required = false) String fullName,
+            @RequestParam(required = false) String email,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size
 
@@ -30,11 +32,11 @@ public class AccountController {
             List<Account> listAccount = new ArrayList<Account>();
             Pageable paging = PageRequest.of(page, size);
             Page<Account> pageAccount;
-            if(user_name == null){
+            if(userName == null && email == null && fullName == null){
                 pageAccount = accountService.GetListAccount(paging);
             }
             else{
-                pageAccount = accountService.findByUserNameContaining(user_name,paging);
+                pageAccount = accountService.findByUserNameOrEmailAndStatus(userName,fullName,email,paging);
             }
             listAccount = pageAccount.getContent();
             Map<String, Object> response = new HashMap<>();

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface IAccountService {
     Page<Account> GetListAccount(Pageable paging);
-    Page<Account> findByUserNameContaining(String user_name, Pageable pageable);
+    Page<Account> findByUserNameOrEmailAndStatus(String user_name, String full_name,String email,Pageable pageable);
     Optional<Account> GetListAccountById(long id);
     Account InsertAccount(Account account);
 }

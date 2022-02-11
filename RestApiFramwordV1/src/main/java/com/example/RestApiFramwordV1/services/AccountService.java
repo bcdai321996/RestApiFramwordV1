@@ -21,8 +21,12 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public Page<Account> findByUserNameContaining(String title, Pageable pageable) {
-        return accountRepository.findByUserNameContaining(title, pageable);
+    public Page<Account> findByUserNameOrEmailAndStatus(String userName,String fullName, String email,Pageable pageable) {
+//        List<Account> rt =  accountRepository.findAbc(email);
+        Page<Account> rt =  accountRepository.findXyz(userName, email, fullName, pageable);
+//        Page<Account> rt =  accountRepository.findByUserNameOrEmailAndStatus(userName, fullName,email, pageable);
+
+        return rt;
     }
 
 
